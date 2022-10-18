@@ -22,8 +22,7 @@ namespace BlazorApp3.Server.Controllers
             var result = await _todoRepository.GetAllTodos();
             return Ok(result);
         }
-
-        [HttpGet("{IdTipo}")]
+        [HttpGet("{IdTodo}")]
         public async Task<ActionResult<ServiceResponse<Todo>>> GetTodoById(int IdTodo)
         {
             var result = await _todoRepository.GetTodoById(IdTodo);
@@ -31,14 +30,10 @@ namespace BlazorApp3.Server.Controllers
         }
 
         [HttpPost]
-        public void CreateTodo(Todo tipo)
+        public void CreateTodo(Todo todo)
         {
-            _todoRepository.CreateTodo(tipo);
+            _todoRepository.CreateTodo(todo);
         }
-
-      
-
-
 
 
     }
