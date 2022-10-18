@@ -30,9 +30,19 @@ namespace BlazorApp3.Server.Controllers
         }
 
         [HttpPost]
-        public void CreateTodo(Todo todo)
+        public async Task<ActionResult<ServiceResponse<Todo>>> CreateTodo(Todo todo)
         {
-            _todoRepository.CreateTodo(todo);
+
+            try
+            {
+                var result = await _todoRepository.CreateTodo(todo);
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new ServiceResponse<Todo> { Message = e.Message });
+            }
+
         }
 
 
