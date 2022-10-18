@@ -1,6 +1,9 @@
 ﻿using BlazorApp3.Server.Repositorios;
 using BlazorApp3.Shared;
+<<<<<<< HEAD
 using Microsoft.AspNetCore.Http;
+=======
+>>>>>>> 37e70b3484a67ba64c0d3cb78070df9422276cb5
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlazorApp3.Server.Controllers
@@ -16,6 +19,7 @@ namespace BlazorApp3.Server.Controllers
             _todoRepository = TodoRepository;
         }
 
+<<<<<<< HEAD
         [HttpGet]
         public async Task<ActionResult<ServiceResponse<List<Todo>>>> GetTodos()
         {
@@ -29,6 +33,8 @@ namespace BlazorApp3.Server.Controllers
             var result = await _todoRepository.GetTodoById(IdTodo);
             return Ok(result);
         }
+=======
+>>>>>>> 37e70b3484a67ba64c0d3cb78070df9422276cb5
 
         [HttpPost]
         public void CreateTodo(Todo tipo)
@@ -37,5 +43,25 @@ namespace BlazorApp3.Server.Controllers
         }
 
 
+<<<<<<< HEAD
+=======
+        [HttpGet]
+        public async Task<ActionResult<ServiceResponse<List<Todo>>>> GetTodos()
+        {
+            var result = await _todoRepository.GetAllTodos();
+            return Ok(result);
+        }
+
+
+        [HttpGet("{IdTipo}")]
+        public async Task<ActionResult<ServiceResponse<Todo>>> GetTodoById(int IdTipo)
+        {
+            var result = await _todoRepository.GetTodoById(IdTipo);
+            return Ok(result);
+        }
+
+
+
+>>>>>>> 37e70b3484a67ba64c0d3cb78070df9422276cb5
     }
 }

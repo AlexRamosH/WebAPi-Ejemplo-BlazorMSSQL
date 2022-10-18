@@ -1,5 +1,6 @@
 global using BlazorApp3.Server.DataAccess;
-
+using BlazorApp3.Server.Repositorios;
+using BlazorApp3.Shared;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,9 +12,11 @@ builder.Services.AddDbContext<TODOContext>(options =>
 
 
 // Add services to the container.
+builder.Services.AddScoped<ITodoRepository, TodoRepository>();
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
+builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
@@ -30,7 +33,11 @@ else
 }
 
 app.UseHttpsRedirection();
-
+app.UseSwagger();
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Blazor API V1");
+});
 app.UseBlazorFrameworkFiles();
 app.UseStaticFiles();
 

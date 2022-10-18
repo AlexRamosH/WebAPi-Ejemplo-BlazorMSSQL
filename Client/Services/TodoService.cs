@@ -1,9 +1,18 @@
 ﻿using BlazorApp3.Shared;
+using System.Net.Http;
+using System.Net.Http.Json;
 
 namespace BlazorApp3.Client.Services
 {
     public class TodoService : ITodoService
     {
+        private readonly HttpClient _httpClient;
+
+        public TodoService(HttpClient httpClient)
+        {
+            _httpClient = httpClient;
+        }
+
         public Task<Todo> Create(Todo todo)
         {
             throw new NotImplementedException();
@@ -14,10 +23,12 @@ namespace BlazorApp3.Client.Services
             throw new NotImplementedException();
         }
 
-        public Task<List<Todo>> GetAll()
+        public async Task<List<Todo>> GetAll()
         {
-            throw new NotImplementedException();
+            var response = await _httpClient.GetFromJsonAsync<ServiceResponse<List<Todo>>>("api/Todo");
+            return response.Data;
         }
+
 
         public Task<Todo> GetById(int id)
         {
