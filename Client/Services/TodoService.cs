@@ -27,12 +27,14 @@ namespace BlazorApp3.Client.Services
         {
             var response = await _httpClient.GetFromJsonAsync<ServiceResponse<List<Todo>>>("api/Todo");
             return response.Data;
+           
         }
 
 
-        public Task<Todo> GetById(int id)
+        public async Task<Todo> GetById(int id)
         {
-            throw new NotImplementedException();
+            var response = await _httpClient.GetFromJsonAsync<ServiceResponse<Todo>>($"api/Todo/{id}");
+            return response.Data;
         }
 
         public Task<Todo> Update(Todo todo)

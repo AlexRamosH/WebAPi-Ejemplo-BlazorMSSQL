@@ -22,6 +22,7 @@ namespace BlazorApp3.Server.Controllers
             var result = await _todoRepository.GetAllTodos();
             return Ok(result);
         }
+
         [HttpGet("{IdTodo}")]
         public async Task<ActionResult<ServiceResponse<Todo>>> GetTodoById(int IdTodo)
         {
