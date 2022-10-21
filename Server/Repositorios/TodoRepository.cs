@@ -12,7 +12,7 @@ namespace BlazorApp3.Server.Repositorios
             _context = context;
         }
 
-        public async Task<ServiceResponse<Todo>> CreateTodo(Todo todo)
+        public async Task<ServiceResponse<TodoI>> CreateTodo(TodoI todo)
         {
             _context.Todos.Add(todo);
 
@@ -22,14 +22,14 @@ namespace BlazorApp3.Server.Repositorios
             }
             catch
             {
-                return new ServiceResponse<Todo>
+                return new ServiceResponse<TodoI>
                 {
                     Data = null,
                     Message = $"Ocurrio un error al guardar el todo.",
                     Success = false
                 };
             }
-            return new ServiceResponse<Todo>
+            return new ServiceResponse<TodoI>
             {
                 Data = todo,
                 Message = $"Tipo: {todo.Descrpcion}, ha sido registrado exitosamente!"
@@ -40,7 +40,7 @@ namespace BlazorApp3.Server.Repositorios
         {
             var response = new ServiceResponse<bool>();
 
-            Todo cat = await _context.Todos.FirstOrDefaultAsync(x => x.Id == idTodo);
+            TodoI cat = await _context.Todos.FirstOrDefaultAsync(x => x.Id == idTodo);
 
             if (cat == null) { 
             response.Success = false;
@@ -66,18 +66,18 @@ namespace BlazorApp3.Server.Repositorios
 
         }
 
-        public async Task<ServiceResponse<List<Todo>>> GetAllTodos()
+        public async Task<ServiceResponse<List<TodoI>>> GetAllTodos()
         {
-            var response = new ServiceResponse<List<Todo>>
+            var response = new ServiceResponse<List<TodoI>>
             {
                 Data = await _context.Todos.ToListAsync()
             };
             return response;
         }
 
-        public async Task<ServiceResponse<Todo>> GetTodoById(int id)
+        public async Task<ServiceResponse<TodoI>> GetTodoById(int id)
         {
-            var response = new ServiceResponse<Todo>();
+            var response = new ServiceResponse<TodoI>();
             var tipo = await _context.Todos.FirstOrDefaultAsync(d => d.Id == id);
             if (tipo == null)
             {
@@ -92,9 +92,9 @@ namespace BlazorApp3.Server.Repositorios
             return response;
         }
 
-        public async Task<ServiceResponse<Todo>> UpdateTodo(Todo todo)
+        public async Task<ServiceResponse<TodoI>> UpdateTodo(TodoI todo)
         {
-            var response = new ServiceResponse<Todo>();
+            var response = new ServiceResponse<TodoI>();
             if (todo == null)
             {
                 response.Success = false;
@@ -103,7 +103,7 @@ namespace BlazorApp3.Server.Repositorios
 
             }
 
-            Todo t = await _context.Todos.FirstOrDefaultAsync(x => x.Id == todo.Id);
+            TodoI t = await _context.Todos.FirstOrDefaultAsync(x => x.Id == todo.Id);
 
             if (t == null)
             {

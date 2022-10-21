@@ -13,7 +13,7 @@ namespace BlazorApp3.Client.Services
             _httpClient = httpClient;
         }
 
-        public Task<Todo> Create(Todo todo)
+        public Task<TodoI> Create(TodoI todo)
         {
             throw new NotImplementedException();
         }
@@ -23,21 +23,21 @@ namespace BlazorApp3.Client.Services
             throw new NotImplementedException();
         }
 
-        public async Task<List<Todo>> GetAll()
+        public async Task<List<TodoI>> GetAll()
         {
-            var response = await _httpClient.GetFromJsonAsync<ServiceResponse<List<Todo>>>("api/Todo");
+            var response = await _httpClient.GetFromJsonAsync<ServiceResponse<List<TodoI>>>("api/todo");
             return response.Data;
            
         }
 
 
-        public async Task<Todo> GetById(int id)
+        public async Task<TodoI> GetById(int id)
         {
-            var response = await _httpClient.GetFromJsonAsync<ServiceResponse<Todo>>($"api/Todo/{id}");
+            var response = await _httpClient.GetFromJsonAsync<ServiceResponse<TodoI>>($"api/todo/{id}");
             return response.Data;
         }
 
-        public Task<Todo> Update(Todo todo)
+        public Task<TodoI> Update(TodoI todo)
         {
             throw new NotImplementedException();
         }

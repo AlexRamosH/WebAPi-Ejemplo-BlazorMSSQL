@@ -1,0 +1,50 @@
+﻿@page "/todoapp"
+@using BlazorApp3.Client.Services
+@using BlazorApp3.Shared
+@using BlazorApp3.Client
+@inject ITodoService TodoService
+
+
+<PageTitle>Todo</PageTitle>
+
+<h1>Todo (@todos.Count(todo => !todo.Terminado))</h1>
+
+<ul>
+    @foreach (var todo in todos)
+    {
+        <li>
+            <input type="checkbox" @bind="todo.Terminado" />
+            <input @bind="todo.Descrpcion" />
+        </li>
+    }
+        </ul>
+
+<input placeholder="Something todo" @bind="newTodo" />
+<button @onclick="AddTodo">Add todo</button>
+
+@code {
+    private List<TodoI> todos = new();
+    private string? newTodo;
+
+    private void AddTodo()
+    {
+        if (!string.IsNullOrWhiteSpace(newTodo))
+        {
+            todos.Add(new TodoI { Descrpcion = newTodo });
+            newTodo = string.Empty;
+        }
+    }
+
+
+
+
+    protected override async Task OnInitializedAsync()
+    {
+       
+       todos = await TodoService.GetAll();
+
+
+    }
+
+
+}

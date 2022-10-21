@@ -17,21 +17,21 @@ namespace BlazorApp3.Server.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<ServiceResponse<List<Todo>>>> GetTodos()
+        public async Task<ActionResult<ServiceResponse<List<TodoI>>>> GetTodos()
         {
             var result = await _todoRepository.GetAllTodos();
             return Ok(result);
         }
 
-        [HttpGet("{IdTodo}")]
-        public async Task<ActionResult<ServiceResponse<Todo>>> GetTodoById(int IdTodo)
+        [HttpGet("{idtodo}")]
+        public async Task<ActionResult<ServiceResponse<TodoI>>> GetTodoById(int IdTodo)
         {
             var result = await _todoRepository.GetTodoById(IdTodo);
             return Ok(result);
         }
 
         [HttpPost]
-        public async Task<ActionResult<ServiceResponse<Todo>>> CreateTodo(Todo todo)
+        public async Task<ActionResult<ServiceResponse<TodoI>>> CreateTodo(TodoI todo)
         {
 
             try
@@ -41,7 +41,7 @@ namespace BlazorApp3.Server.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(new ServiceResponse<Todo> { Message = e.Message });
+                return BadRequest(new ServiceResponse<TodoI> { Message = e.Message });
             }
 
         }

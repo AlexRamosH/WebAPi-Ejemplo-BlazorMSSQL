@@ -16,7 +16,7 @@ namespace BlazorApp3.Server.DataAccess
         {
         }
 
-        public virtual DbSet<Todo> Todos { get; set; } = null!;
+        public virtual DbSet<TodoI> Todos { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -27,7 +27,7 @@ namespace BlazorApp3.Server.DataAccess
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Todo>(entity =>
+            modelBuilder.Entity<TodoI>(entity =>
             {
                 entity.ToTable("TODO");
 

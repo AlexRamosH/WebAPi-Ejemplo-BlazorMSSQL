@@ -5,11 +5,11 @@ namespace BlazorApp3.Server.Repositorios
     public interface ITodoRepository
     {
 
-        Task<ServiceResponse<List<Todo>>> GetAllTodos();
-        Task<ServiceResponse<Todo>> GetTodoById(int id);
-        Task<ServiceResponse<Todo>> CreateTodo(Todo todo);
+        Task<ServiceResponse<List<TodoI>>> GetAllTodos();
+        Task<ServiceResponse<TodoI>> GetTodoById(int id);
+        Task<ServiceResponse<TodoI>> CreateTodo(TodoI todo);
         Task<ServiceResponse<bool>> DeleteTodo(int idTodo);
-        Task<ServiceResponse<Todo>> UpdateTodo(Todo todo);
+        Task<ServiceResponse<TodoI>> UpdateTodo(TodoI todo);
 
     }
 }
