@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<TODOContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer"));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")); //cadena de 
 });
 
 
@@ -33,7 +33,7 @@ else
 }
 
 app.UseHttpsRedirection();
-app.UseSwagger();
+app.UseSwagger();  //agregar swagger
 app.UseSwaggerUI(c =>
 {
     c.SwaggerEndpoint("/swagger/v1/swagger.json", "Blazor API V1");
