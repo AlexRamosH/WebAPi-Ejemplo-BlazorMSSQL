@@ -1,6 +1,8 @@
-﻿using BlazorApp3.Shared;
+﻿using BlazorApp3.Client.Pages;
+using BlazorApp3.Shared;
 using System.Net.Http;
 using System.Net.Http.Json;
+using static System.Net.WebRequestMethods;
 
 namespace BlazorApp3.Client.Services
 {
@@ -13,14 +15,17 @@ namespace BlazorApp3.Client.Services
             _httpClient = httpClient;
         }
 
-        public Task<TodoI> Create(TodoI todo)
+        public  async Task<TodoI> Create(TodoI todo)
         {
-            throw new NotImplementedException();
+            var response = await _httpClient.PostAsJsonAsync("api/todo", todo);
+            return response.Content.ReadFromJsonAsync<ServiceResponse<TodoI?>>().Result.Data;
         }
 
-        public Task<bool> Delete(int id)
+        public async Task<bool> Delete(int id)
         {
-            throw new NotImplementedException();
+            var response =  await _httpClient.DeleteAsync("api/todo/" + id);
+
+            return response.IsSuccessStatusCode;
         }
 
         public async Task<List<TodoI>> GetAll()

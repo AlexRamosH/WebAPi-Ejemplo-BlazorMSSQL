@@ -3,6 +3,7 @@
 @using BlazorApp3.Shared
 @using BlazorApp3.Client
 @inject ITodoService TodoService
+@using System.Diagnostics
 
 
 <PageTitle>Todo</PageTitle>
@@ -14,7 +15,11 @@
     {
         <li>
             <input type="checkbox" @bind="todo.Terminado" />
-            <input @bind="todo.Descrpcion" />
+            <input  @bind="todo.Descrpcion" />
+            <button @onclick="() => delete(todo)">Eliminar</button>
+            <button @onclick="() => delete(todo)">Actualizar</button>
+
+
         </li>
     }
         </ul>
@@ -26,16 +31,26 @@
     private List<TodoI> todos = new();
     private string? newTodo;
 
-    private void AddTodo()
+    private async void AddTodo()
     {
         if (!string.IsNullOrWhiteSpace(newTodo))
         {
-            todos.Add(new TodoI { Descrpcion = newTodo });
+            TodoI nuevo = new TodoI { Descrpcion = newTodo };
+
+            todos.Add(nuevo);
+            await TodoService.Create(nuevo);
             newTodo = string.Empty;
         }
     }
 
+    async void delete(TodoI todo){
+        todos.Remove(todo);
+        Debug.WriteLine($"lista: {todos}");
+        await TodoService.Delete(todo.Id);
+        Debug.WriteLine($"Logging: {todo.Id}");
+       
 
+    }
 
 
     protected override async Task OnInitializedAsync()

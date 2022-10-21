@@ -46,6 +46,12 @@ namespace BlazorApp3.Server.Controllers
 
         }
 
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteAsync(int id)
+        {
+            var result = await _todoRepository.DeleteTodo(id);
+            return Ok(result);
+        }
 
     }
 }
