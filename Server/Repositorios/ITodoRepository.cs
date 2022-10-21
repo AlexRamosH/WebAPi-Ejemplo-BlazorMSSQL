@@ -2,6 +2,10 @@
 
 namespace BlazorApp3.Server.Repositorios
 {
+    /// <summary>
+    /// Interface para la estandarizacion de nuestras clase
+    /// su implemetacion realizara las actualizaciones a la base de datos
+    /// </summary>
     public interface ITodoRepository
     {
 
