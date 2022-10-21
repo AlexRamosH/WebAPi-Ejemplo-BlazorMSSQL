@@ -6,6 +6,11 @@ using static System.Net.WebRequestMethods;
 
 namespace BlazorApp3.Client.Services
 {
+
+    /// <summary>
+    /// Realizara la comunicacion del cliente web con el controlador
+    /// de esta forma se realiza las peticiones y mustra la informacion en la GUI
+    /// </summary>
     public class TodoService : ITodoService
     {
         private readonly HttpClient _httpClient;

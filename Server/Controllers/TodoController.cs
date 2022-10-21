@@ -5,6 +5,13 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BlazorApp3.Server.Controllers
 {
+
+    /// <summary>
+    /// Clase utilizada para que el cliente interactue con los repositorios
+    /// manteniendo un patron MVC creara cada uno de los metodos utilizados en 
+    /// TodoRepository para conectarlos
+    /// </summary>
+    //ruta al realizar las llamadas api/todo
     [Route("api/[controller]")]
     [ApiController]
     public class TodoController : ControllerBase
