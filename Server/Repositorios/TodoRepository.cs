@@ -3,15 +3,30 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BlazorApp3.Server.Repositorios
 {
+    /// <summary>
+    /// Clase que implementa la interface ITodoRepository
+    /// Realizara las llamadas necesarias para los metodos creados
+    /// de esta forma se realiza las actualizaciones insert etc en la tabla TODO
+    /// </summary>
     public class TodoRepository : ITodoRepository
     {
         private readonly TODOContext _context;
 
+        /// <summary>
+        /// Agrega el contexto de la base de datos a la clase
+        /// pare realizar las opereciones nesesarias
+        /// </summary>
+        /// <param name="context"> Referencia a la base de datos</param>
         public TodoRepository(TODOContext context)
         {
             _context = context;
         }
 
+        /// <summary>
+        /// Agregara un nuevo dato a la tabla TODO
+        /// </summary>
+        /// <param name="todo">objeto base con la informacion a registrar</param>
+        /// <returns>Respuesta del query</returns>
         public async Task<ServiceResponse<TodoI>> CreateTodo(TodoI todo)
         {
             _context.Todos.Add(todo);
@@ -36,6 +51,11 @@ namespace BlazorApp3.Server.Repositorios
             };
         }
 
+        /// <summary>
+        /// Eliminara el dato indicado de la tabla Todo
+        /// </summary>
+        /// <param name="idTodo"> id de la tarea</param>
+        /// <returns></returns>
         public async Task<ServiceResponse<bool>> DeleteTodo(int idTodo)
         {
             var response = new ServiceResponse<bool>();
@@ -114,6 +134,8 @@ namespace BlazorApp3.Server.Repositorios
 
             try
             {
+                //Agregamos los parametros que se actualizaran antes de hacer la 
+                //solicitud en la base de datos
                 t.Terminado = todo.Terminado;
                 t.Descripcion = todo.Descripcion;
                 _context.Todos.Update(t);
