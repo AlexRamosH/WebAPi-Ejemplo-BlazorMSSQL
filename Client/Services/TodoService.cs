@@ -25,7 +25,7 @@ namespace BlazorApp3.Client.Services
         {
             var response =  await _httpClient.DeleteAsync("api/todo/" + id);
 
-            return response.IsSuccessStatusCode;
+            return response.Content.ReadFromJsonAsync<ServiceResponse<bool>>().Result.Data;
         }
 
         public async Task<List<TodoI>> GetAll()
@@ -42,9 +42,10 @@ namespace BlazorApp3.Client.Services
             return response.Data;
         }
 
-        public Task<TodoI> Update(TodoI todo)
+        public async Task<TodoI> Update(TodoI todo)
         {
-            throw new NotImplementedException();
+            var response = await _httpClient.PutAsJsonAsync("api/todo", todo);
+            return response.Content.ReadFromJsonAsync<ServiceResponse<TodoI?>>().Result.Data;
         }
     }
 }

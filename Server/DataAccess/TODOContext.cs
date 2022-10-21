@@ -33,10 +33,10 @@ namespace BlazorApp3.Server.DataAccess
 
                 entity.Property(e => e.Id).HasColumnName("ID");
 
-                entity.Property(e => e.Descrpcion)
+                entity.Property(e => e.Descripcion)
                     .HasMaxLength(40)
                     .IsUnicode(false)
-                    .HasColumnName("DESCRPCION");
+                    .HasColumnName("DESCRIPCION");
 
                 entity.Property(e => e.Terminado).HasColumnName("TERMINADO");
             });

@@ -53,5 +53,20 @@ namespace BlazorApp3.Server.Controllers
             return Ok(result);
         }
 
+
+        [HttpPut]
+        public async Task<ActionResult<ServiceResponse<TodoI>>> Update(TodoI todo)
+        {
+            try
+            {
+                var result = await _todoRepository.UpdateTodo(todo);
+                return Ok(result);
+            }
+            catch (Exception e)
+            {
+
+                return BadRequest(new ServiceResponse<List<TodoI>> { Message = e.Message });
+            }
+        }
     }
 }

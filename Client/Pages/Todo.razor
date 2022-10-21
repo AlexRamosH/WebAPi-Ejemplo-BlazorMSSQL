@@ -15,11 +15,9 @@
     {
         <li>
             <input type="checkbox" @bind="todo.Terminado" />
-            <input  @bind="todo.Descrpcion" />
+            <input  @bind="todo.Descripcion" />
             <button @onclick="() => delete(todo)">Eliminar</button>
-            <button @onclick="() => delete(todo)">Actualizar</button>
-
-
+            <button @onclick="() => update(todo)">Actualizar</button>
         </li>
     }
         </ul>
@@ -35,7 +33,7 @@
     {
         if (!string.IsNullOrWhiteSpace(newTodo))
         {
-            TodoI nuevo = new TodoI { Descrpcion = newTodo };
+            TodoI nuevo = new TodoI { Descripcion = newTodo };
 
             todos.Add(nuevo);
             await TodoService.Create(nuevo);
@@ -48,8 +46,14 @@
         Debug.WriteLine($"lista: {todos}");
         await TodoService.Delete(todo.Id);
         Debug.WriteLine($"Logging: {todo.Id}");
-       
 
+
+    }
+
+    async void update(TodoI todo)
+    {
+
+        await TodoService.Update(todo);
     }
 
 

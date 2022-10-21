@@ -32,7 +32,7 @@ namespace BlazorApp3.Server.Repositorios
             return new ServiceResponse<TodoI>
             {
                 Data = todo,
-                Message = $"Tipo: {todo.Descrpcion}, ha sido registrado exitosamente!"
+                Message = $"Tipo: {todo.Descripcion}, ha sido registrado exitosamente!"
             };
         }
 
@@ -115,6 +115,7 @@ namespace BlazorApp3.Server.Repositorios
             try
             {
                 t.Terminado = todo.Terminado;
+                t.Descripcion = todo.Descripcion;
                 _context.Todos.Update(t);
                 await _context.SaveChangesAsync();
                 response.Success = true;

@@ -6,7 +6,7 @@ namespace BlazorApp3.Shared
     public partial class TodoI
     {
         public int Id { get; set; }
-        public string Descrpcion { get; set; } = null!;
+        public string Descripcion { get; set; } = null!;
         public bool Terminado { get; set; }
     }
 }
