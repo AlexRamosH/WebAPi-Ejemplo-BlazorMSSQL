@@ -12,7 +12,7 @@ builder.Services.AddDbContext<TODOContext>(options =>
 
 
 // Add services to the container.
-builder.Services.AddScoped<ITodoRepository, TodoRepository>();
+builder.Services.AddScoped<ITodoRepository, TodoRepository>(); //referencia a la interface e implementacion
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
