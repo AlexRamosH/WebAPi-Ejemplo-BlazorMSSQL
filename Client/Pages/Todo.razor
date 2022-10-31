@@ -5,7 +5,19 @@
 @inject ITodoService TodoService
 @using System.Diagnostics
 
+<style>
+    .delete {
+        background-color: red;
+        
+    }
+    .update{
+        background-color: yellow;
+    }
 
+    .insert {
+        background-color: lawngreen;
+    }
+</style>
 <PageTitle>Todo</PageTitle>
 
 <h1>Todo (@todos.Count(todo => !todo.Terminado))</h1>
@@ -16,14 +28,14 @@
         <li>
             <input type="checkbox" @bind="todo.Terminado" />
             <input  @bind="todo.Descripcion" />
-            <button @onclick="() => delete(todo)">Eliminar</button>
-            <button @onclick="() => update(todo)">Actualizar</button>
+            <button class="delete" @onclick="() => delete(todo)">Eliminar</button>
+            <button class="update" @onclick="() => update(todo)">Actualizar</button>
         </li>
     }
         </ul>
 
 <input placeholder="Something todo" @bind="newTodo" />
-<button @onclick="AddTodo">Add todo</button>
+<button class="insert" @onclick="AddTodo">Add todo</button>
 
 @code {
     private List<TodoI> todos = new();
