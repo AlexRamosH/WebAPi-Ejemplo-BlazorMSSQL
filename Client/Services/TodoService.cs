@@ -10,6 +10,7 @@ namespace BlazorApp3.Client.Services
     /// <summary>
     /// Realizara la comunicacion del cliente web con el controlador
     /// de esta forma se realiza las peticiones y mustra la informacion en la GUI
+    /// Implementa cada uno de los metodos creados en el controlador
     /// </summary>
     public class TodoService : ITodoService
     {
